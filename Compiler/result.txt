@@ -1,5 +1,6 @@
-Value: 253 Tag: 256
-Value: 20 Tag: 256
-Lexemme: true Tag: 258
-Lexemme: false Tag: 259
-Lexemme: delete Tag: 257
+Num: 253 Tag: 256
+Num: 20 Tag: 256
+Word: true Tag: 258
+Word: false Tag: 259
+Word: delete Tag: 257
+Token: -1 

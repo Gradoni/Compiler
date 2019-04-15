@@ -121,6 +121,7 @@
   <ItemGroup>
     <ClInclude Include="lexer.h" />
     <ClInclude Include="Num.h" />
+    <ClInclude Include="Operator.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>

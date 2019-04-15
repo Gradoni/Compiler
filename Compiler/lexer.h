@@ -7,6 +7,7 @@
 #include "Word.h"
 #include "Token.h"
 #include "Num.h"
+#include "Operator.h"
 
 namespace lexer {
 	class lexer
@@ -14,7 +15,7 @@ namespace lexer {
 	public:
 		int line = 1;
 		lexer(std::string input_file);
-		Token scan(); //scans input and returns tokens
+		std::unique_ptr<Token> scan(); //scans input and returns tokens
 		~lexer();
 
 

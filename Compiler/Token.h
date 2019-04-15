@@ -6,13 +6,14 @@ namespace lexer {
 	public:
 		const int tag;
 		Token(int t) : tag(t) {};
-		
-		~Token() {};
+		virtual void print(std::ostream& stream) { stream << "Token: " << tag << " \n"; };
+		virtual ~Token() {};
 	};
 	
+
 	enum Tag
 	{
-		NUM = 256, ID, TRUE, FALSE
+		NUM = 256, ID, TRUE, FALSE, OP
 	};
 }
 

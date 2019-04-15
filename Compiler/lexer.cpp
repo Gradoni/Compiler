@@ -14,7 +14,7 @@ namespace lexer {
 		words.insert({ t.lexemme, t });
 	}
 
-	Token lexer::scan()
+	std::unique_ptr<Token> lexer::scan()
 	{
 		//handle whitespaces and newlines
 		for (; ; peek = source_file.get())
@@ -68,15 +68,63 @@ namespace lexer {
 				++line;
 			else break;
 		}
+		//handle relational operators
+		if (peek == '<') {
+			peek = source_file.get();
+			if (peek == '=') {
+				//handle <=
+				return std::make_unique<Operator>(Operator(Ops::LESS_THAN_EQ));
+			}
+			else {
+				source_file.putback(peek);
+				//handle <
+				return std::make_unique<Operator>(Operator(Ops::LESS_THAN));
+			} 
+		}
+		if (peek == '>') {
+			peek = source_file.get();
+			if (peek == '=') {
+				//handle >=
+				return std::make_unique<Operator>(Operator(Ops::MORE_THAN_EQ));
+			}
+			else {
+				source_file.putback(peek);
+				//handle >
+				return std::make_unique<Operator>(Operator(Ops::MORE_THAN));
+			}
+		}
+		if (peek == '!') {
+			peek = source_file.get();
+			if (peek == '=') {
+				//handle !=
+				return std::make_unique<Operator>(Operator(Ops::NOT_EQ));
+			}
+			else {
+				source_file.putback(peek);
+				//handle !
+				return std::make_unique<Operator>(Operator(Ops::NOT));
+			}
+		}
+		if (peek == '=') {
+			peek = source_file.get();
+			if (peek == '=') {
+				//handle ==
+				return std::make_unique<Operator>(Operator(Ops::EQ));
+			}
+			else {
+				source_file.putback(peek);
+				//handle =
+				return std::make_unique<Operator>(Operator(Ops::ASSIGN));
+			}
+		}
+
 		if (isdigit(peek)) {
 			int v = 0;
 			do {
 				v = 10 * v + static_cast<char>(peek)-'0';
 				peek = source_file.get();
 			} while (isdigit(peek));
-			Num n{ v };
-			target_file << "Value: " << n.value << " " <<  "Tag: " << n.tag << '\n';
-			return n;
+			return std::make_unique<Num>(Num{ v });
 		}
 		if (isalpha(peek)) {
 			std::string s;
@@ -89,19 +137,14 @@ namespace lexer {
 			{
 				Word w { Tag::ID, s };
 				words.insert({ s, w });
-				target_file << "Lexemme: " << w.lexemme << " " << "Tag: " << w.tag << '\n';
-				return w;
+				return std::make_unique<Word>(w);
 			}
 			else {
-				target_file << "Lexemme: " << words_iterator->second.lexemme << " " << "Tag: " << words_iterator->second.tag << '\n';
-				return words_iterator->second;
+				return std::make_unique<Word>(words_iterator->second);
 			}
 		}
 		Token t{ peek };
-		if (t.tag != EOF) {
-			target_file << "Token: " << static_cast<char>(t.tag) << '\n';
-		}
-		return t;
+		return std::make_unique<Token>(t);
 	}
 
 	lexer::~lexer()
