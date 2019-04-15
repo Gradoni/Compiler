@@ -59,7 +59,7 @@ namespace lexer {
 				source_file.putback('/');
 			}
 		}
-		//handle whitespaces and newlines
+		//handle whitespaces and newlines added by exit from comments
 		for (; ; peek = source_file.get())
 		{
 			if (peek == ' ' || peek == '\t')
@@ -76,48 +76,44 @@ namespace lexer {
 				return std::make_unique<Operator>(Operator(Ops::LESS_THAN_EQ));
 			}
 			else {
-				source_file.putback(peek);
 				//handle <
 				return std::make_unique<Operator>(Operator(Ops::LESS_THAN));
 			} 
 		}
-		if (peek == '>') {
+		else if (peek == '>') {
 			peek = source_file.get();
 			if (peek == '=') {
 				//handle >=
 				return std::make_unique<Operator>(Operator(Ops::MORE_THAN_EQ));
 			}
 			else {
-				source_file.putback(peek);
 				//handle >
 				return std::make_unique<Operator>(Operator(Ops::MORE_THAN));
 			}
 		}
-		if (peek == '!') {
+		else if (peek == '!') {
 			peek = source_file.get();
 			if (peek == '=') {
 				//handle !=
 				return std::make_unique<Operator>(Operator(Ops::NOT_EQ));
 			}
 			else {
-				source_file.putback(peek);
 				//handle !
 				return std::make_unique<Operator>(Operator(Ops::NOT));
 			}
 		}
-		if (peek == '=') {
+		else if (peek == '=') {
 			peek = source_file.get();
 			if (peek == '=') {
 				//handle ==
 				return std::make_unique<Operator>(Operator(Ops::EQ));
 			}
 			else {
-				source_file.putback(peek);
 				//handle =
 				return std::make_unique<Operator>(Operator(Ops::ASSIGN));
 			}
 		}
-
+		
 		if (isdigit(peek)) {
 			int v = 0;
 			do {

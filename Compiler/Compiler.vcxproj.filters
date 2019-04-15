@@ -13,30 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\lexer">
+      <UniqueIdentifier>{e4820dd2-d9a3-4205-b965-b513b318b68e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lexer">
+      <UniqueIdentifier>{2488be1a-ab8f-4b75-8870-987abefd09d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lexer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\lexer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lexer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Token.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Word.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\lexer</Filter>
     </ClInclude>
     <ClInclude Include="Num.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\lexer</Filter>
     </ClInclude>
     <ClInclude Include="Operator.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Header Files\lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="Word.h">
+      <Filter>Header Files\lexer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
