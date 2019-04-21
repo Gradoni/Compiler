@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <cmath>
 #include "Word.h"
 #include "Token.h"
 #include "Num.h"

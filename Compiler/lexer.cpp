@@ -118,12 +118,20 @@ namespace lexer {
 			}
 		}
 		
-		if (isdigit(peek)) {
-			int v = 0;
+		if (isdigit(peek) || peek == '.') {
+			std::string number;
+			bool dot = false;
 			do {
-				v = 10 * v + static_cast<char>(peek)-'0';
+				number += peek;
+				if (peek == '.' && !dot) {
+					dot = true;
+				}
+				else if (peek == '.' && dot) {
+					throw std::runtime_error("Syntax error: wrong double representation");
+				}
 				peek = source_file.get();
-			} while (isdigit(peek));
+			} while (peek == '.' || isdigit(peek));
+			double v = std::stod(number);
 			return std::make_unique<Num>(Num{ v });
 		}
 		if (isalpha(peek)) {

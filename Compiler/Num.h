@@ -6,9 +6,9 @@ namespace lexer {
 		public Token
 	{
 	public:
-		const int value;
+		const double value;
 		void print(std::ostream& stream) override { stream << "Num: " << value << " Tag: " << tag << "\n"; };
-		Num(int v) : Token(Tag::NUM), value(v) {};
+		Num(double v) : Token(Tag::NUM), value(v) {};
 		~Num() {};
 	};
 

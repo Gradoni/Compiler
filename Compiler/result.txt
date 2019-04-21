@@ -1,4 +1,7 @@
 Num: 253 Tag: 256
+Num: 1234.35 Tag: 256
+Num: 56.5 Tag: 256
+Num: 55.555 Tag: 256
 Num: 20 Tag: 256
 Word: true Tag: 258
 Num: 20 Tag: 256
