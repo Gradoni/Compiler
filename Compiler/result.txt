@@ -9,9 +9,11 @@ Word: true Tag: 258
 Word: false Tag: 259
 Num: 90 Tag: 256
 Operator: 1 Tag: 260 
+Operator: 6 Tag: 260 
 Num: 90 Tag: 256
 Num: 101 Tag: 256
 Operator: 3 Tag: 260 
+Operator: 6 Tag: 260 
 Num: 102 Tag: 256
 Word: delete Tag: 257
 Token: -1 

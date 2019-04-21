@@ -73,7 +73,6 @@ namespace lexer {
 			peek = source_file.get();
 			if (peek == '=') {
 				//handle <=
-				peek = source_file.get();
 				return std::make_unique<Operator>(Operator(Ops::LESS_THAN_EQ));
 			}
 			else {
@@ -85,7 +84,6 @@ namespace lexer {
 			peek = source_file.get();
 			if (peek == '=') {
 				//handle >=
-				peek = source_file.get();
 				return std::make_unique<Operator>(Operator(Ops::MORE_THAN_EQ));
 			}
 			else {
